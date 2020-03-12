@@ -1,0 +1,9 @@
+*,
+.container{
+    margin: 12px;
+    padding: 12 px;
+    border:2px solid #faebd7;
+    background-color: #915c83;
+    color: #cd9575;
+
+}
