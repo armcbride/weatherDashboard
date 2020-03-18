@@ -1,5 +1,5 @@
 *,
-.container,
+
 .jumbotron,
 .jumbotron-fluid,
 .container-page
@@ -20,4 +20,10 @@ h2{
     .display-4,
     .lead {
         text-align: center;
+    }
+    
+    #search-engine,
+    .search-engine {
+justify-content: left;
+text-align: left;
     }
