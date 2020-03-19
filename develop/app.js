@@ -2,7 +2,7 @@
 //global variables
 
 //variable to place the user input into queryURL
-var city = $('#search-term').val();
+var city = $('#search-term');
 //weather queryURL
 var APIKey = "4b4fc905987791628273a594a06e68d7";
 var baseURL = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -19,7 +19,7 @@ var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?" ;
 function getForecast(){
 
   $.ajax({
-    url: `${forecastURL}q=${city}&appid=${forecastKey}`,
+    url: `${forecastURL}q=${city.val()}&appid=${forecastKey}`,
     method: "GET"
   }).then(function (res) {
     displayInfo(res)
@@ -36,7 +36,7 @@ function handleSearch(e) {
   e.preventDefault()
   
   $.ajax({
-    url: `${baseURL}q=${city}&appid=${APIKey}`,
+    url: `${baseURL}q=${city.val()}&appid=${APIKey}`,
     method: "GET"
   }).then(function (res) {
     displayInfo(res)
