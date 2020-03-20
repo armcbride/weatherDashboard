@@ -98,7 +98,8 @@ function handleSearch(e) {
         var maxF = (res.list[i].main.temp_max - 273.15) * 1.8 + 32;
         var minF = (res.list[i].main.temp_min - 273.15) * 1.8 + 32;
   
-        var forecastCard = $(`<div class="card border-">
+        var forecastCard = $(`<div class="row">
+        <div class = "col-12">
         <img src="http://openweathermap.org/img/wn/${
           res.list[i].weather[0].icon
         }@2x.png" class="card-img-top" alt="icon of weather">
@@ -114,6 +115,7 @@ function handleSearch(e) {
           <p>Max: ${maxF.toFixed(2)}</p>
           <p>Humidity: ${res.list[i].main.humidity}</p>
           </div>
+        </div>
         </div>
         </div>`);
   

@@ -10,11 +10,12 @@
 }
 
 .fixed-bottom,
-h2{
+h2,
+.container {
     text-align: center;
-    background-color: #faebd7;
+    background-color:  #915c83;
     font-size: 10px;
-    color: #915c83;
+    color: #cd9575;
     }
 
     .display-4,

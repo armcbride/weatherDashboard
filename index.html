@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class= "container-page">
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid shadow-lg p-3 mb-5 rounded container">
         <div class="container">
           <h1 class="display-4">Weather Dashboard</h1>
           <p class="lead">Check in on your local weather! Why not?</p>
@@ -19,27 +19,32 @@
         
         
       </div>
-      
+      <div class = "container">
       <div id='weather-display'>
+        <div class= "row">
             <div class="shadow-lg p-3 mb-5 rounded container col-4 search-engine" id="search-engine">
               <form id="search-form">
                 <input id="search-term" type='text'/>
                 <input type='submit'/>
               </form>
+              <div id='search-history'>
+  
+              </div>
+            </div>
+            <div id='city-display' class="col-8">
+  
+            </div>
             </div>
           </div>
         
-        <div id='search-history'>
-  
-        </div>
-        <div id='city-display' class="col-8">
-  
-        </div>
+       
+        
         <div id= 'forecast' class="col-11">
+          
           
         </div>
       </div>
-      
+    </div>
   
     
 
