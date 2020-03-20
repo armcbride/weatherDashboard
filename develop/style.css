@@ -22,8 +22,9 @@ h2{
         text-align: center;
     }
     
-    #search-engine,
-    .search-engine {
+    .search-engine,
+    #weather-display {
 justify-content: left;
 text-align: left;
+align-content: space-around;
     }
