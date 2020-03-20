@@ -9,7 +9,7 @@ a simple weather application to check the local weather
 - AJAX
 
 # Live Link
-- <a href= "" target= "blank"> Weather Dashboard </a>
+- <a href= "https://armcbride.github.io/weatherDashboard/index.html" target= "blank"> Weather Dashboard </a>
 - <a href= "https://github.com/armcbride/weatherDashboard" target= "blank"> Repository </a>
 - <a href= "https://armcbride.github.io/portfolio/about.html" target= "blank"> Portfolio </a>
 # Contributors
