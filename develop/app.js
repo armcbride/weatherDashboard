@@ -25,7 +25,7 @@ function getForecast(){
     displayInfo(res)
     saveCity(res.name)
     console.log(res);
-   
+   console.log(url)
   })
 }
 var cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
@@ -34,7 +34,8 @@ var cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
 // search term function
 function handleSearch(e) {
   e.preventDefault()
-  
+  $('#forecast-display').prepend(getForecast);
+
   $.ajax({
     url: `${baseURL}q=${city.val()}&appid=${APIKey}`,
     method: "GET"
@@ -65,6 +66,7 @@ Feels like: ${feelsTemp.toFixed(2)}<br>
     </div>
   `
   $('#city-display').prepend(infoBlock)
+  
 }
 
 //local storage function
@@ -73,4 +75,3 @@ function saveCity(name) {
 }
 
 $('#search-form').submit(handleSearch)
-$('#forecast-display').prepend(getForecast)
