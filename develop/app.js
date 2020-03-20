@@ -51,7 +51,7 @@ function handleSearch(e) {
   }).then(function (res) {
     saveCity(res.name)
     // console.log(res);
-  
+  $('#city-display').empty();
     var tempF= (res.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp= (res.main.feels_like - 273.15) * 1.8 + 32;
     var infoBlock = `
