@@ -49,9 +49,9 @@ function handleSearch(e) {
     url: `${baseURL}q=${city.val()}&appid=${APIKey}`,
     method: "GET"
   }).then(function (res) {
-    saveCity(res.name)
+    // saveCity(res.name)
     // console.log(res);
-  $('#city-display').empty();
+  $('#city-display').empty()
     var tempF= (res.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp= (res.main.feels_like - 273.15) * 1.8 + 32;
     var infoBlock = `
@@ -129,22 +129,24 @@ function handleSearch(e) {
 })
 }
 
-var cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+// var cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
 
-//local storage function
-function saveCity(name) {
-  localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-}
-function loadCities() {
-  $("#searh-history").empty();
-  for (var i = 0; i < cityHistory.length; i++) {
-    var list = $("<div>");
-    var cityNewDiv = $("<button class='load'>");
-    cityNewDiv.text(cityHistory[i]);
-    cityNewDiv.appendTo(list);
-    $("#search-history").append(list);
-  }
-}
-loadCities();
+// //local storage function
+// function saveCity(name) {
+//   localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+
+
+// }
+// function loadCities() {
+//   $("#searh-history").empty();
+//   for (var i = 0; i < cityHistory.length; i++) {
+//     var list = $("<div>");
+//     var cityNewDiv = $("<button class='load'>");
+//     cityNewDiv.text(cityHistory[i]);
+//     cityNewDiv.appendTo(list);
+//     $("#search-history").append(list);
+//   }
+// }
+// loadCities();
 
 $('#search-form').submit(handleSearch)
