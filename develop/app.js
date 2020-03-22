@@ -22,6 +22,8 @@ var uvURL="http://api.openweathermap.org/data/2.5/uvi?appid=";
 var forecastKey = "327c22d7e329579cb0b1376b7c47c4a1";
 var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?" ;
 
+//Local storage variable
+var cityHistory = JSON.parse(window.localStorage.getItem("cityHistory")) || [];
 
 function uvColor() {
   if (uvIndex >= 11.0) {
@@ -41,7 +43,7 @@ function uvColor() {
 
 // search term function
 function handleSearch(e) {
-  e.preventDefault()
+  e.preventDefault();
   
 
 //call for weather of the day
@@ -49,8 +51,14 @@ function handleSearch(e) {
     url: `${baseURL}q=${city.val()}&appid=${APIKey}`,
     method: "GET"
   }).then(function (res) {
-    // saveCity(res.name)
+    // saveCity()
     // console.log(res);
+    if (cityHistory.indexOf(city.val()) === -1){
+          cityHistory.push(city.val());
+          window.localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+          createButtons(city.val());
+        }
+
   $('#city-display').empty()
     var tempF= (res.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp= (res.main.feels_like - 273.15) * 1.8 + 32;
@@ -130,17 +138,28 @@ function handleSearch(e) {
   
 })
 }
+$('#search-history').on('click','div', function(){
+  handleSearch(city.val())
 
-// var cityHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+})
 
-// //local storage function
-// function saveCity(name) {
-//   localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+function createButtons (text){
+var div = $('<button>').text(text);
+$('#search-history').prepend(div);
+
+}
 
 
+//  //local storage function
+// function saveCity() {
+//   
+
+  
 // }
-// function loadCities() {
-//   $("#searh-history").empty();
+
+// function loadCities(e) {
+  
+  
 //   for (var i = 0; i < cityHistory.length; i++) {
 //     var list = $("<div>");
 //     var cityNewDiv = $("<button class='load'>");
@@ -149,6 +168,6 @@ function handleSearch(e) {
 //     $("#search-history").append(list);
 //   }
 // }
-// loadCities();
+
 
 $('#search-form').submit(handleSearch)
