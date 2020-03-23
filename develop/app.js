@@ -72,7 +72,7 @@ function handleSearch(e) {
     Feels like: ${feelsTemp.toFixed(2)}<br>
     Humidity: ${res.main.humidity}%<br>
     Wind Speed: ${res.wind.speed}mph <br></h4></div>
-    <div id= "uv"><h4></h4></div>
+    <h3 id= "uv" class= "w-3"></h3>
   `
   //puts the weather block on the page
   $('#city-display').prepend(infoBlock)
