@@ -147,7 +147,7 @@ $('#search-history').prepend(div);
 
 }
 
-function loadCities(e) {
+function loadCities() {
 
   $("#search-history").empty();
   for (var i = 0; i < cityHistory.length; i++) {
@@ -158,7 +158,7 @@ function loadCities(e) {
     $("#search-history").append(list);
 
     $('#search-history').on('click','div', function(){
-      handleSearch(city.val())
+      handleSearch(city.val());
     
     })
   }
