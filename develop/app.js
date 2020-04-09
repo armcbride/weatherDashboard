@@ -16,7 +16,7 @@ console.log(currentTime);
 //UV queryl URL and Key
 var uvKey= "4318c140f3e032da26d8b4e00dc97aab";
 var uvIndex= 0;
-var uvURL="http://api.openweathermap.org/data/2.5/uvi?appid=";
+var uvURL="https://api.openweathermap.org/data/2.5/uvi?appid=";
 
 //five day forecast queryURL
 var forecastKey = "327c22d7e329579cb0b1376b7c47c4a1";
@@ -139,10 +139,7 @@ function handleSearch(e) {
   
 })
 }
-$('#search-history').on('click','div', function(){
-  handleSearch(city.val())
 
-})
 
 function createButtons (text){
 var div = $('<button>').text(text);
@@ -150,25 +147,23 @@ $('#search-history').prepend(div);
 
 }
 
+function loadCities(e) {
 
-//  //local storage function
-// function saveCity() {
-//   
+  $("#search-history").empty();
+  for (var i = 0; i < cityHistory.length; i++) {
+    var list = $("<div>");
+    var cityNewDiv = $("<button class='load'>");
+    cityNewDiv.text(cityHistory[i]);
+    cityNewDiv.appendTo(list);
+    $("#search-history").append(list);
 
-  
-// }
-
-// function loadCities(e) {
-  
-  
-//   for (var i = 0; i < cityHistory.length; i++) {
-//     var list = $("<div>");
-//     var cityNewDiv = $("<button class='load'>");
-//     cityNewDiv.text(cityHistory[i]);
-//     cityNewDiv.appendTo(list);
-//     $("#search-history").append(list);
-//   }
-// }
+    $('#search-history').on('click','div', function(){
+      handleSearch(city.val())
+    
+    })
+  }
+}
+loadCities();
 
 
 $('#search-form').submit(handleSearch)
