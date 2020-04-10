@@ -21,25 +21,29 @@ var uvURL="https://api.openweathermap.org/data/2.5/uvi?appid=";
 var forecastKey = "327c22d7e329579cb0b1376b7c47c4a1";
 var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?" ;
 
+//local storage variables
 var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#search-term") || city[0];
 
+//local storage function
 function loadCities() {
   $("#search-history").empty();
   for (var i = 0; i < city.length; i++) {
+    var list = $("<div class='row'>");
     var cityNewDiv = $("<button class= 'load'>");
     cityNewDiv.text(city[i]);
-    $("#search-history").append(cityNewDiv);
+    cityNewDiv.appendTo(list);
+    $("#search-history").append(list);
   }
 }
 loadCities();
-
+//onclick, search
 $(document).on("click", ".load", function () {
   
   var cityInput = $(this).text();
   handleSearch(cityInput);
 });
-
+//creates buttons from search input
 $("#btn").on("click", function (e) {
   e.preventDefault();
   var cityInput = cityS.val().trim();
@@ -57,7 +61,8 @@ $("#btn").on("click", function (e) {
 
   }
 });
-//functions
+
+
 //assigns color to UV
 function uvColor() {
   if (uvIndex >= 11.0) {
@@ -72,14 +77,9 @@ function uvColor() {
     $("#uv").css("color", "lightblue");
   }
 }
-
-
-
 // search term function
 function handleSearch(cityName) {
   
-  
-
 //call for weather of the day
   $.ajax({
     url: `${baseURL}q=${cityName}&appid=${APIKey}`,
