@@ -1,8 +1,7 @@
 
 //global variables
 
-//variable to place the user input into queryURL
-var city = $('#search-term');
+
 //weather queryURL
 var APIKey = "4b4fc905987791628273a594a06e68d7";
 var baseURL = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -22,9 +21,44 @@ var uvURL="https://api.openweathermap.org/data/2.5/uvi?appid=";
 var forecastKey = "327c22d7e329579cb0b1376b7c47c4a1";
 var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?" ;
 
-//Local storage variable
-var cityHistory = JSON.parse(window.localStorage.getItem("cityHistory")) || [];
+var city = JSON.parse(localStorage.getItem("city")) || [];
+var cityS = $("#search-term") || city[0];
 
+function loadCities() {
+  $("#search-history").empty();
+  for (var i = 0; i < city.length; i++) {
+    var cityNewDiv = $("<button class= 'load'>");
+    cityNewDiv.text(city[i]);
+    $("#search-history").append(cityNewDiv);
+  }
+}
+loadCities();
+
+$(document).on("click", ".load", function () {
+  
+  var cityInput = $(this).text();
+  handleSearch(cityInput);
+});
+
+$("#btn").on("click", function (e) {
+  e.preventDefault();
+  var cityInput = cityS.val().trim();
+
+  if (cityInput) {
+    var cityDiv = $("<div>");
+    cityDiv.text(cityInput);
+    if (city.indexOf(cityInput) === -1) {
+      city.unshift(cityInput);
+      localStorage.setItem("city", JSON.stringify(city));
+    }
+    handleSearch(cityInput);
+    loadCities();
+    cityS.val("");
+
+  }
+});
+//functions
+//assigns color to UV
 function uvColor() {
   if (uvIndex >= 11.0) {
     $("#uv").css("color", "violet");
@@ -42,23 +76,16 @@ function uvColor() {
 
 
 // search term function
-function handleSearch(e) {
-  e.preventDefault();
+function handleSearch(cityName) {
+  
   
 
 //call for weather of the day
   $.ajax({
-    url: `${baseURL}q=${city.val()}&appid=${APIKey}`,
+    url: `${baseURL}q=${cityName}&appid=${APIKey}`,
     method: "GET"
   }).then(function (res) {
-    // saveCity()
-    // console.log(res);
-    if (cityHistory.indexOf(city.val()) === -1){
-          cityHistory.push(city.val());
-          window.localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-          createButtons(city.val());
-        }
-
+   
   $('#city-display').empty()
     var tempF= (res.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp= (res.main.feels_like - 273.15) * 1.8 + 32;
@@ -93,7 +120,7 @@ function handleSearch(e) {
 })
 //5 day forecast
     $.ajax({
-      url: `${forecastURL}q=${city.val()}&appid=${forecastKey}`,
+      url: `${forecastURL}q=${cityName}&appid=${forecastKey}`,
       method: "GET"
     }).then(function (res) {
      
@@ -141,29 +168,8 @@ function handleSearch(e) {
 }
 
 
-function createButtons (text){
-var div = $('<button>').text(text);
-$('#search-history').prepend(div);
-
-}
-
-function loadCities() {
-
-  $("#search-history").empty();
-  for (var i = 0; i < cityHistory.length; i++) {
-    var list = $("<div>");
-    var cityNewDiv = $("<button class='load'>");
-    cityNewDiv.text(cityHistory[i]);
-    cityNewDiv.appendTo(list);
-    $("#search-history").append(list);
-
-    $('#search-history').on('click','div', function(){
-      handleSearch(city.val());
-    
-    })
-  }
-}
-loadCities();
 
 
-$('#search-form').submit(handleSearch)
+
+
+
