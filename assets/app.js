@@ -113,16 +113,16 @@ function handleSearch(e) {
           res.list[i].weather[0].icon
         }@2x.png" class="card-img-top" alt="icon of weather">
         <div class="card-body">
-          <h5 class="card-title">${res.city.name}</h5>
-          <div class= "card-text>
-          <p class="time">${moment()
+          <h5 class="card-title">${moment()
             .add(i + 1, "day")
-            .format("dddd")}</p>
-          <p>Temperature: ${tempF.toFixed(2)}</p>
-          <p>Feels Like: ${feelsF.toFixed(2)}</p>
-          <p>Min: ${minF.toFixed(2)} </p>
-          <p>Max: ${maxF.toFixed(2)}</p>
-          <p>Humidity: ${res.list[i].main.humidity}</p>
+            .format("dddd")}</h5>
+          <div class="card-text">
+          <div class="time"></div>
+          Temperature: ${tempF.toFixed(2)}<br>
+          Feels Like: ${feelsF.toFixed(2)}<br>
+          Min: ${minF.toFixed(2)}<br>
+          Max: ${maxF.toFixed(2)}<br>
+          Humidity: ${res.list[i].main.humidity}%<br>
           </div>
         </div>
         </div>
