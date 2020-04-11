@@ -10,7 +10,6 @@ var weatherIconBase = `http://openweathermap.org/img/wn/`;
 
 var currentTime = moment().format('LLLL');
 $('#currentDay').append(currentTime);
-console.log(currentTime);
 
 //UV queryl URL and Key
 var uvKey= "4318c140f3e032da26d8b4e00dc97aab";
@@ -43,6 +42,7 @@ $(document).on("click", ".load", function () {
   var cityInput = $(this).text();
   handleSearch(cityInput);
 });
+
 //creates buttons from search input
 $("#btn").on("click", function (e) {
   e.preventDefault();
@@ -124,7 +124,6 @@ function handleSearch(cityName) {
       method: "GET"
     }).then(function (res) {
      
-      console.log(res);
       var forecast5Days = $(` <div class="shadow-lg p-3 mb-5 rounded container card-group"></div>`);
   
     $("#forecast").empty();
